@@ -1,29 +1,25 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-class Movie{
-    public $title;
-    public $genres = [];
-    public $releaseYear;
+    <?php
+        require_once (__DIR__ . "/models/movies.php");
+        require_once (__DIR__ . "/models/db.php");
+    ?>
+    <title>Movies php</title>
+</head>
+<body>
+    <h1>Movie List</h1>
 
-    public function __construct($title, $genres, $releaseYear) {
-        $this->title = $title;
-        $this->genres = $genres;
-        $this->releaseYear = $releaseYear;
-    }
-
-    public function displayMovieInfo() {
-        $genreList = implode(', ', $this->genres);
-        echo "Title: {$this->title}, Genre: {$genreList}, Release Year: {$this->releaseYear}";
-    }
-}
-
-$movie1 = new Movie("UP", ["Cartoon"], 2009);
-$movie2 = new Movie("Inception", ["Sci-Fi","Action"], 2010);
-
-echo "Movie 1:";
-$movie1->displayMovieInfo();
-
-echo '<br>';
-
-echo "Movie 2:";
-$movie2->displayMovieInfo();
+    <ul>
+        <?php
+        foreach ($movies as $movie){?>
+            <li>
+                <?php echo $movie->displayMovieInfo(); ?>
+            </li>
+        <?php } ?>
+    </ul>
+</body>
+</html>
